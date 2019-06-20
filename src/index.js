@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 import ColorBrowser from "./modules/color-browser";
+import ErrorBoundary from "./modules/error-boundary";
 
 function App() {
   return (
     <div className="App">
       <h1>Color Browser</h1>
-      <ColorBrowser />
+      <ErrorBoundary>
+        <ColorBrowser />
+      </ErrorBoundary>
       <footer id="app-footer">
         <ul>
           <li />

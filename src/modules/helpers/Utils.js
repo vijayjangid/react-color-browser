@@ -1,3 +1,4 @@
+const document = window.document;
 export default class Utils {
   static toTitleCase(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -32,6 +33,6 @@ export default class Utils {
     }
   }
   static isCommandSupported(command) {
-    return command && document.queryCommandSupported(command);
+    return command && window.document.queryCommandSupported(command);
   }
 }

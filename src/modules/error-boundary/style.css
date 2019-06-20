@@ -1,0 +1,10 @@
+.error {
+  display: flex;
+  min-height: 50vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.error h2 {
+  color: #dd3143;
+}
