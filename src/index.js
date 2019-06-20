@@ -17,7 +17,7 @@ function App() {
           <li>
             CodeSandbox:
             <a
-              href="https://codesandbox.io/s/react-color-browser-5dih0?fontsize=14"
+              href="https://codesandbox.io/s/github/vijayjangid/react-color-browser"
               target="_blank"
               rel="noopener noreferrer"
             >
