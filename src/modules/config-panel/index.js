@@ -90,7 +90,7 @@ class ConfigPanel extends React.PureComponent {
             </div>
           ))}
         <div className="config-row shades">
-          <label htmlFor="shades">Total Shades</label>
+          <label htmlFor="shades">Shades</label>
           <input
             className="slider"
             name="shades"

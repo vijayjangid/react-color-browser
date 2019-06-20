@@ -13,6 +13,12 @@
 .config-panel .config-row.shades {
   background: #efe9da;
 }
+.config-panel .config-row input[type="number"] {
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 2px 5px;
+  outline: none;
+}
 .slider {
   cursor: pointer;
 }
