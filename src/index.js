@@ -17,7 +17,11 @@ function App() {
           <li />
           <li>
             Github:
-            <a href="https://github.com/vijayjangid/react-color-browser">
+            <a
+              href="https://github.com/vijayjangid/react-color-browser"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               react-color-browser
             </a>
           </li>
@@ -26,6 +30,8 @@ function App() {
             <a
               className="no-underline"
               href="https://twitter.com/_vijayjangid_"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               @_vijayjangid_
             </a>
