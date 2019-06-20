@@ -14,7 +14,16 @@ function App() {
       </ErrorBoundary>
       <footer id="app-footer">
         <ul>
-          <li />
+          <li>
+            CodeSandbox:
+            <a
+              href="https://codesandbox.io/s/react-color-browser-5dih0?fontsize=14"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              react-color-browser
+            </a>
+          </li>
           <li>
             Github:
             <a
