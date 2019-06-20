@@ -9,6 +9,29 @@ function App() {
     <div className="App">
       <h1>Color Browser</h1>
       <ColorBrowser />
+      <footer>
+        <ul>
+          <li />
+          <li>
+            Github:
+            <a href="https://github.com/vijayjangid/react-color-browser">
+              react-color-browser
+            </a>
+          </li>
+          <li>
+            twitter:
+            <a
+              className="no-underline"
+              href="https://twitter.com/_vijayjangid_"
+            >
+              @_vijayjangid_
+            </a>
+          </li>
+          <li className="made-with-love">
+            made with <span className="heart">&hearts;</span>
+          </li>
+        </ul>
+      </footer>
     </div>
   );
 }
