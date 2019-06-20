@@ -12,7 +12,6 @@ class Canvas extends React.PureComponent {
       timeout: null
     };
     this.onCopy = this.onCopy.bind(this);
-    throw Error("error");
   }
   componentDidMount() {
     this.setState({
