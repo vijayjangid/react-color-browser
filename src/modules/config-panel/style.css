@@ -10,7 +10,7 @@
   flex-direction: column;
   min-height: 65px;
 }
-.config-panel .config-row.shades {
+.config-panel .shades {
   background: #efe9da;
 }
 .config-panel .config-row input[type="number"] {
@@ -19,10 +19,10 @@
   padding: 2px 5px;
   outline: none;
 }
-.slider {
+.config-panel .config-row .slider {
   cursor: pointer;
 }
-.color-indicator {
+.config-panel .config-row .color-indicator {
   position: absolute;
   border: solid 1px rgba(0, 0, 0, 0.2);
   border-radius: 10px;

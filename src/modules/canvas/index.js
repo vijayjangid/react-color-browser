@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
-import Color from "../Color";
+import Color from "../models/Color";
+import Utils from "../helpers/Utils";
 
 class Canvas extends React.PureComponent {
   constructor(props) {
@@ -14,7 +15,7 @@ class Canvas extends React.PureComponent {
   }
   componentDidMount() {
     this.setState({
-      copySupported: document.queryCommandSupported("copy")
+      copySupported: Utils.isCommandSupported("copy")
     });
   }
   onCopy({ target }) {
@@ -25,11 +26,11 @@ class Canvas extends React.PureComponent {
         clearTimeout(timeout);
       }
 
-      this.selectRange(target);
+      Utils.selectRange(target);
       document.execCommand("copy");
 
       const _timeout = setTimeout(() => {
-        this.clearRange();
+        Utils.clearRange();
         this.setState({
           copiedText: null,
           timeout: null
@@ -41,35 +42,7 @@ class Canvas extends React.PureComponent {
       });
     }
   }
-  selectRange(node) {
-    if (document.body.createTextRange) {
-      const range = document.body.createTextRange();
-      range.moveToElementText(node);
-      range.select();
-    } else if (window.getSelection) {
-      const selection = window.getSelection();
-      const range = document.createRange();
-      range.selectNodeContents(node);
-      selection.removeAllRanges();
-      selection.addRange(range);
-    } else {
-      console.warn("Could not select text in node: Unsupported browser.");
-    }
-  }
-  clearRange() {
-    if (window.getSelection) {
-      if (window.getSelection().empty) {
-        // Chrome
-        window.getSelection().empty();
-      } else if (window.getSelection().removeAllRanges) {
-        // Firefox
-        window.getSelection().removeAllRanges();
-      }
-    } else if (document.selection) {
-      // IE?
-      document.selection.empty();
-    }
-  }
+
   render() {
     const { color, shades } = this.props || {};
     const colorObj = new Color({ ...color });
@@ -84,7 +57,7 @@ class Canvas extends React.PureComponent {
     const { copiedText } = this.state;
     return (
       <div className="canvas">
-        <div>
+        <div className="shades">
           {shadesStyles &&
             shadesStyles.map((shade, index) => (
               <div key={index} style={shade} title={shade.background}>
@@ -96,7 +69,7 @@ class Canvas extends React.PureComponent {
               </div>
             ))}
         </div>
-        <div className="center" style={style}>
+        <div className="current" style={style}>
           <span className="color-value" onClick={this.onCopy}>
             {copiedText === style.background ? "copied!" : style.background}
           </span>

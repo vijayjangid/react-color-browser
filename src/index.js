@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <h1>Color Browser</h1>
       <ColorBrowser />
-      <footer>
+      <footer id="app-footer">
         <ul>
           <li />
           <li>

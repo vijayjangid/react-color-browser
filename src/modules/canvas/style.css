@@ -5,7 +5,7 @@
   color: rgba(0, 0, 0, 0.3);
 }
 
-.canvas > div:not(.center) {
+.canvas > .shades {
   flex: 1;
   min-height: 100%;
   display: flex;
@@ -13,23 +13,23 @@
   flex-direction: row;
   font-size: 0.85rem;
 }
-.canvas > div > div {
+.canvas > .shades > div {
   display: flex;
   padding: 10px;
   flex-basis: calc(50% - 20px);
   align-items: flex-start;
 }
-.canvas > div > div:nth-of-type(2n) {
+.canvas > .shades > div:nth-of-type(2n) {
   justify-content: flex-end;
 }
-.canvas > div > div:nth-last-of-type(2) {
+.canvas > .shades > div:nth-last-of-type(2) {
   align-items: flex-end;
 }
-.canvas > div > div:last-of-type {
+.canvas > .shades > div:last-of-type {
   align-items: flex-end;
   justify-content: flex-end;
 }
-.canvas > .center {
+.canvas > .current {
   font-size: 1.3rem;
   position: absolute;
   top: 30%;

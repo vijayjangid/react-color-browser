@@ -1,7 +1,8 @@
-function toTitleCase(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import Utils from "../helpers/Utils";
 class Color {
+  red = 0;
+  green = 0;
+  blue = 0;
   constructor({ red = 0, green = 0, blue = 0 } = {}) {
     this.red = red;
     this.green = green;
@@ -29,7 +30,7 @@ class Color {
   }
   toArray() {
     return Object.keys(this).map(e => ({
-      name: toTitleCase(e),
+      name: Utils.toTitleCase(e),
       key: e,
       value: this[e]
     }));
@@ -54,7 +55,7 @@ class Color {
         })
       );
     }
-    shades.length = count;
+    shades.length = count; // restrict shades to be no more than count
     return shades;
   }
 }

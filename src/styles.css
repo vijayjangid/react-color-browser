@@ -6,10 +6,10 @@ body {
   font-family: "B612 Mono", monospace;
   text-align: center;
 }
-footer ul {
+#app-footer ul {
   list-style: none;
 }
-footer ul li {
+#app-footer ul li {
   padding: 10px;
 }
 

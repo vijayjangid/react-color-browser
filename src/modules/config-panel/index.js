@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-import Color from "../Color";
+import Color from "../models/Color";
 
 class ConfigPanel extends React.PureComponent {
   initialValue = {
