@@ -41,8 +41,8 @@ class Color {
       Math.min(red, green, blue),
       Math.min(255 - red, 255 - green, 255 - blue)
     ];
-    const shades = [];
     const count = Number(input) + 1;
+    const shades = new Array(count).fill(this.toHex());
 
     for (let i = 1; i < count; i++) {
       const factor =
@@ -54,15 +54,13 @@ class Color {
         // ignore the original color
         continue;
       }
-      shades.push(
-        this.toHex({
-          red: Math.ceil(red + factor),
-          green: Math.ceil(green + factor),
-          blue: Math.ceil(blue + factor)
-        })
-      );
+      shades[i - 1] = this.toHex({
+        red: Math.ceil(red + factor),
+        green: Math.ceil(green + factor),
+        blue: Math.ceil(blue + factor)
+      });
     }
-    shades.length = count; // restrict shades to be no more than count
+    shades.length = input; // restrict shades to be no more than input
     return shades;
   }
 }
