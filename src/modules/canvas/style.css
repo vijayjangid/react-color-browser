@@ -1,0 +1,41 @@
+.canvas {
+  flex: 2;
+  position: relative;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.3);
+}
+.canvas > div:not(.center) {
+  flex: 1;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.canvas > div > div {
+  display: flex;
+  padding: 10px;
+  flex-basis: calc(50% - 20px);
+}
+.canvas > div > div:nth-of-type(2n) {
+  justify-content: flex-end;
+}
+.canvas > div > div:nth-last-of-type(2) {
+  align-items: flex-end;
+}
+.canvas > div > div:last-of-type {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.canvas > div.center {
+  font-size: 1.3rem;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

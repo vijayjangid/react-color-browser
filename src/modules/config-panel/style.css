@@ -1,0 +1,17 @@
+.config-panel {
+  flex: 1;
+}
+.config-panel .config-row {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.config-panel .config-row:last-of-type {
+  border-bottom: none;
+}
+.config-panel .config-row.shades {
+  background: #efe9da;
+}
+.slider {
+  cursor: pointer;
+}
