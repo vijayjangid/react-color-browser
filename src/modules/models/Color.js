@@ -35,18 +35,25 @@ class Color {
       value: this[e]
     }));
   }
-  getShades(count) {
+  getShades(input) {
     const { red, green, blue } = this;
     const [left, right] = [
       Math.min(red, green, blue),
       Math.min(255 - red, 255 - green, 255 - blue)
     ];
     const shades = [];
-    for (let i = 1; i <= count; i++) {
+    const count = Number(input) + 1;
+
+    for (let i = 1; i < count; i++) {
       const factor =
-        i <= count / 2
+        i < count / 2
           ? (-(count / 2 - i) * left * 2) / count
           : ((i / 2) * right * 2) / count;
+
+      if (factor === 0) {
+        // ignore the original color
+        continue;
+      }
       shades.push(
         this.toHex({
           red: Math.ceil(red + factor),

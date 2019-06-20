@@ -10,7 +10,7 @@ class ConfigPanel extends React.PureComponent {
       green: 150,
       blue: 100
     }),
-    shades: 16
+    shades: 2
   };
   MIN_RGB = 0;
   MAX_RGB = 255;
