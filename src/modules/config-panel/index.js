@@ -10,7 +10,7 @@ class ConfigPanel extends React.PureComponent {
       green: 150,
       blue: 100
     }),
-    shades: 8
+    shades: 16
   };
   MIN_RGB = 0;
   MAX_RGB = 255;
@@ -25,6 +25,7 @@ class ConfigPanel extends React.PureComponent {
 
     this.handleColorChange = this.handleColorChange.bind(this);
     this.handleShadesChange = this.handleShadesChange.bind(this);
+    this.getCssRgbStyle = this.getCssRgbStyle.bind(this);
   }
 
   handleColorChange({ target: { name, value } = {} }) {
@@ -48,6 +49,14 @@ class ConfigPanel extends React.PureComponent {
       });
     }
   }
+  getCssRgbStyle({ key, value }) {
+    const styleGen = {
+      red: `rgb(${value},0,0)`,
+      green: `rgb(0,${value},0)`,
+      blue: `rgb(0,0,${value})`
+    };
+    return styleGen[key];
+  }
   render() {
     const { color, shades } = this.state;
 
@@ -57,6 +66,10 @@ class ConfigPanel extends React.PureComponent {
           color.toArray().map((c, i) => (
             <div key={i} className="config-row">
               <label htmlFor={c.key}>{c.name}</label>
+              <span
+                className="color-indicator"
+                style={{ background: this.getCssRgbStyle(c) }}
+              />
               <input
                 className="slider"
                 name={c.key}
@@ -76,11 +89,6 @@ class ConfigPanel extends React.PureComponent {
               />
             </div>
           ))}
-        {color && (
-          <div className="config-row">
-            <span>{color.toHex()}</span>
-          </div>
-        )}
         <div className="config-row shades">
           <label htmlFor="shades">Total Shades</label>
           <input

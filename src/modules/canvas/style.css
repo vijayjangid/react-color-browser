@@ -4,17 +4,20 @@
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.3);
 }
+
 .canvas > div:not(.center) {
   flex: 1;
   min-height: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  font-size: 0.85rem;
 }
 .canvas > div > div {
   display: flex;
   padding: 10px;
   flex-basis: calc(50% - 20px);
+  align-items: flex-start;
 }
 .canvas > div > div:nth-of-type(2n) {
   justify-content: flex-end;
@@ -26,7 +29,7 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
-.canvas > div.center {
+.canvas > .center {
   font-size: 1.3rem;
   position: absolute;
   top: 30%;
@@ -38,4 +41,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.canvas .color-value {
+  cursor: pointer;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 2px 5px;
+}
+.canvas .color-value:hover {
+  border: solid 1px rgba(0, 0, 0, 0.3);
 }
