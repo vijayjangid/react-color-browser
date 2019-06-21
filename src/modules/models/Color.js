@@ -48,31 +48,43 @@ class Color {
   }
   getShades(input) {
     const { red, green, blue } = this;
-    const [left, right] = [
+    let [left, right] = [
       Math.min(red, green, blue),
       Math.min(255 - red, 255 - green, 255 - blue)
     ];
-    const count = Number(input) + 1;
+    const count = Number(input);
     const shades = new Array(count).fill(this.toHex());
 
-    for (let i = 1; i < count; i++) {
-      const factor =
-        i < count / 2
-          ? (-(count / 2 - i) * left * 2) / count
-          : ((i / 2) * right * 2) / count;
+    if (left < 1 && right < 1) {
+      return shades;
+    }
 
-      if (factor === 0) {
-        // ignore the original color
-        continue;
-      }
+    let leftLimit = Math.min(left, Math.ceil(count / 2));
+    let rightLimit = Math.min(right, Math.ceil(count / 2));
+
+    if (leftLimit < Math.ceil(count / 2)) {
+      rightLimit += Math.ceil(count / 2) - leftLimit;
+    } else if (rightLimit < Math.ceil(count / 2)) {
+      leftLimit += Math.ceil(count / 2) - rightLimit;
+    }
+
+    for (let i = leftLimit; i > 0; i--) {
       shades[i - 1] = this.toHex({
-        red: Math.ceil(red + factor),
-        green: Math.ceil(green + factor),
-        blue: Math.ceil(blue + factor)
+        red: Math.ceil(red - (i * left) / leftLimit),
+        green: Math.ceil(green - (i * left) / leftLimit),
+        blue: Math.ceil(blue - (i * left) / leftLimit)
       });
     }
+    for (let i = rightLimit; i > 0; i--) {
+      shades[leftLimit + i - 1] = this.toHex({
+        red: Math.ceil(red + (i * right) / rightLimit),
+        green: Math.ceil(green + (i * right) / rightLimit),
+        blue: Math.ceil(blue + (i * right) / rightLimit)
+      });
+    }
+
     shades.length = input; // restrict shades to be no more than input
-    return shades;
+    return shades.sort();
   }
   getInvertColor() {
     return this.red * 0.299 + this.green * 0.587 + this.blue * 0.114 > 186
@@ -82,6 +94,22 @@ class Color {
 }
 export default Color;
 
+// for (let i = 1; i < count; i++) {
+//   const factor =
+//     i < count / 2
+//       ? (-(count / 2 - i) * left * 2) / count
+//       : ((i / 2) * right * 2) / count;
+
+//   if (factor === 0) {
+//     // ignore the original color
+//     continue;
+//   }
+//   shades[i - 1] = this.toHex({
+//     red: Math.ceil(red + factor),
+//     green: Math.ceil(green + factor),
+//     blue: Math.ceil(blue + factor)
+//   });
+// }
 // toHSL() {
 //   let r = this.red / 255;
 //   let g = this.green / 255;
