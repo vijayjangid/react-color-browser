@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 import gradient from "./gradient.png";
 import gradientCircle from "./gradient-circle.png";
+import swatches from "./swatches.png";
 import Color from "../models/Color";
 
 export default class ImagePicker extends React.PureComponent {
@@ -9,7 +10,7 @@ export default class ImagePicker extends React.PureComponent {
     super(props);
     this.state = {
       enablePicker: false,
-      gradientType: "linear"
+      gradientType: "swatches"
     };
 
     this.canvas = React.createRef();
@@ -31,10 +32,14 @@ export default class ImagePicker extends React.PureComponent {
   }
 
   onChangeGradientType({ target: { name } }) {
-    this.setState({
-      gradientType: name
-    });
-    this.drawImageOnCanvas({ gradientType: name });
+    this.setState(
+      {
+        gradientType: name || "swatches"
+      },
+      () => {
+        this.drawImageOnCanvas();
+      }
+    );
   }
 
   onImageChange({ target: { files } }) {
@@ -51,9 +56,26 @@ export default class ImagePicker extends React.PureComponent {
   drawImageOnCanvas({ src, gradientType = this.state.gradientType } = {}) {
     const gradientMapper = {
       linear: gradient,
-      circular: gradientCircle
+      circular: gradientCircle,
+      swatches: swatches
     };
 
+    // if (gradientType === "swatches") {
+    //   const canvas = this.canvas.current;
+    //   const ctx = canvas.getContext("2d");
+    //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //   const swatchSize = 280 / 7;
+    //   for (let i = 0; i < 7; i++) {
+    //     for (let j = 0; j < 7; j++) {
+    //       const red = j % 3 === 0 || j % 4 === 0 ? ((i + 1) * 255) / 7 : 0;
+    //       const green = j % 3 === 1 || j % 5 === 0 ? ((i + 1) * 255) / 7 : 0;
+    //       const blue = j % 3 === 2 || j % 6 === 0 ? ((i + 1) * 255) / 7 : 0;
+
+    //       ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+    //       ctx.fillRect(i * swatchSize, j * swatchSize, swatchSize, swatchSize);
+    //     }
+    //   }
+    // }
     if (src || gradientMapper[gradientType]) {
       const canvas = this.canvas.current;
       const ctx = canvas.getContext("2d");
@@ -129,11 +151,12 @@ export default class ImagePicker extends React.PureComponent {
       <div className="image-picker">
         <div className="color-type-selector">
           <p className="white" color="#ffffff" onClick={this.onClickSwatch} />
-          <p
-            className="black"
-            color="#000000"
-            name="black"
-            onClick={this.onClickSwatch}
+          <p className="black" color="#000000" onClick={this.onClickSwatch} />
+          <img
+            src={swatches}
+            alt="swatches"
+            name="swatches"
+            onClick={this.onChangeGradientType}
           />
           <img
             src={gradient}
