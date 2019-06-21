@@ -151,14 +151,25 @@ export default class ImagePicker extends React.PureComponent {
     return (
       <div className="image-picker">
         <div className="color-type-selector">
-          <p className="white" color="#ffffff" onClick={this.onClickSwatch} />
-          <p className="black" color="#000000" onClick={this.onClickSwatch} />
+          <p
+            className="white"
+            color="#ffffff"
+            title="White (#FFFFFF)"
+            onClick={this.onClickSwatch}
+          />
+          <p
+            className="black"
+            color="#000000"
+            title="Black (#000000)"
+            onClick={this.onClickSwatch}
+          />
           <span className="separator">|</span>
           <img
             className={gradientType === "swatches" && "active"}
             src={swatches}
             alt="swatches"
             name="swatches"
+            title="Swatches"
             onClick={this.onChangeGradientType}
           />
           <img
@@ -166,6 +177,7 @@ export default class ImagePicker extends React.PureComponent {
             src={gradient}
             alt="linear gradient"
             name="linear"
+            title="Linear Gradient"
             onClick={this.onChangeGradientType}
           />
           <img
@@ -173,6 +185,7 @@ export default class ImagePicker extends React.PureComponent {
             src={gradientCircle}
             alt="circular gradient"
             name="circular"
+            title="Circular Gradient"
             onClick={this.onChangeGradientType}
           />
         </div>
