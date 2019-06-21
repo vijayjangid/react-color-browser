@@ -6,6 +6,11 @@ body {
   font-family: "B612 Mono", monospace;
   text-align: center;
 }
+.App > h1 {
+  font-family: "Pacifico", cursive;
+  color: #333333;
+  text-shadow: 2px 2px 0px #e0eef5, 5px 4px 0px rgba(0, 0, 0, 0.15);
+}
 #app-footer ul {
   list-style: none;
 }
