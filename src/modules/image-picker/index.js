@@ -146,25 +146,30 @@ export default class ImagePicker extends React.PureComponent {
     this.props.onChange({ color });
   }
   render() {
-    const enablePickerClass = this.state.enablePicker ? "picker" : "";
+    const { gradientType, enablePicker } = this.state;
+    const enablePickerClass = enablePicker ? "picker" : "";
     return (
       <div className="image-picker">
         <div className="color-type-selector">
           <p className="white" color="#ffffff" onClick={this.onClickSwatch} />
           <p className="black" color="#000000" onClick={this.onClickSwatch} />
+          <span className="separator">|</span>
           <img
+            className={gradientType === "swatches" && "active"}
             src={swatches}
             alt="swatches"
             name="swatches"
             onClick={this.onChangeGradientType}
           />
           <img
+            className={gradientType === "linear" && "active"}
             src={gradient}
             alt="linear gradient"
             name="linear"
             onClick={this.onChangeGradientType}
           />
           <img
+            className={gradientType === "circular" && "active"}
             src={gradientCircle}
             alt="circular gradient"
             name="circular"
