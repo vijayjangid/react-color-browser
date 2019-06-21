@@ -40,6 +40,17 @@ function Footer() {
             @_vijayjangid_
           </a>
         </li>
+        <li>
+          LinkedIn:
+          <a
+            className="no-underline"
+            href="https://www.linkedin.com/in/vijayjangid/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            vijayjangid
+          </a>
+        </li>
         <li className="made-with-love">
           made with <span className="heart">&hearts;</span>
         </li>
