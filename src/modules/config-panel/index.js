@@ -4,14 +4,6 @@ import "./style.css";
 import Color from "../models/Color";
 
 class ConfigPanel extends React.PureComponent {
-  initialValue = {
-    color: new Color({
-      red: 200,
-      green: 150,
-      blue: 100
-    }),
-    shades: 8
-  };
   MIN_RGB = 0;
   MAX_RGB = 255;
   MIN_SHADES = 2;
@@ -19,7 +11,8 @@ class ConfigPanel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.initialValue
+      color: props.color,
+      shades: props.shades
     };
     props.onChange({ ...this.state });
 
@@ -28,7 +21,15 @@ class ConfigPanel extends React.PureComponent {
     this.getCssRgbStyle = this.getCssRgbStyle.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      this.setState({
+        ...nextProps
+      });
+    }
+  }
   handleColorChange({ target: { name, value } = {} }) {
+    console.log("change fired");
     if (value) {
       const { color } = this.state;
       color.update({ key: name, value });

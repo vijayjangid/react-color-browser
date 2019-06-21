@@ -3,6 +3,17 @@ class Color {
   red = 0;
   green = 0;
   blue = 0;
+  static fromHex(hex) {
+    const { red, green, blue } = this;
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? new this({
+          red: parseInt(result[1], 16),
+          green: parseInt(result[2], 16),
+          blue: parseInt(result[3], 16)
+        })
+      : new this({ red, green, blue });
+  }
   constructor({ red = 0, green = 0, blue = 0 } = {}) {
     this.red = red;
     this.green = green;
@@ -62,6 +73,11 @@ class Color {
     }
     shades.length = input; // restrict shades to be no more than input
     return shades;
+  }
+  getInvertColor() {
+    return this.red * 0.299 + this.green * 0.587 + this.blue * 0.114 > 186
+      ? "#000000"
+      : "#FFFFFF";
   }
 }
 export default Color;

@@ -26,9 +26,7 @@ class Canvas extends React.PureComponent {
         clearTimeout(timeout);
       }
 
-      Utils.selectRange(target);
-      document.execCommand("copy");
-
+      Utils.copyStringToClipboard(textContent.toUpperCase());
       const _timeout = setTimeout(() => {
         Utils.clearRange();
         this.setState({
@@ -49,10 +47,12 @@ class Canvas extends React.PureComponent {
     const colorHex = colorObj.toHex();
     const colorShades = colorObj.getShades(shades);
     const shadesStyles = colorShades.map(shade => ({
-      background: shade
+      background: shade,
+      color: Color.fromHex(shade).getInvertColor()
     }));
     const style = {
-      background: colorHex
+      background: colorHex,
+      color: colorObj.getInvertColor()
     };
     const { copiedText } = this.state;
     return (
