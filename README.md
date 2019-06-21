@@ -5,4 +5,4 @@ created with sandbox
 
 Deployed demo site on Netlify [https://csb-53l8b.netlify.com/](https://csb-53l8b.netlify.com/)
 
-![screenshot](/public/screenshot.png?raw=true "Screenshot")
+![screenshot](/public/screenshot.png? "Screenshot")
