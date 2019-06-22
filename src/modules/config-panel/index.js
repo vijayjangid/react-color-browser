@@ -16,27 +16,39 @@ class ConfigPanel extends React.PureComponent {
     };
     props.onChange({ ...this.state });
 
+    this.handleRGBChange = this.handleRGBChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
     this.handleShadesChange = this.handleShadesChange.bind(this);
     this.getCssRgbStyle = this.getCssRgbStyle.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
+    if (
+      this.props.color !== nextProps.color ||
+      this.props.shades !== nextProps.shades
+    ) {
       this.setState({
         ...nextProps
       });
     }
   }
-  handleColorChange({ target: { name, value } = {} }) {
-    console.log("change fired");
+  handleRGBChange({ target: { name, value } = {} }) {
     if (value) {
       const { color } = this.state;
       color.update({ key: name, value });
-      this.setState({ color: new Color(color) }, () => {
-        this.props.onChange({ ...this.state });
-      });
+      this.setState({ color: new Color(color) }, () =>
+        this.props.onChange({ ...this.state })
+      );
     }
+  }
+  handleColorChange({ target }) {
+    const color = target.getAttribute("name");
+    this.setState(
+      {
+        color: Color.fromHex(color)
+      },
+      () => this.props.onChange({ ...this.state })
+    );
   }
   handleShadesChange({ target: { name, value } } = {}) {
     if (
@@ -60,7 +72,7 @@ class ConfigPanel extends React.PureComponent {
   }
   render() {
     const { color, shades } = this.state;
-
+    const { clipboardHistory } = this.props;
     return (
       <div className="config-panel">
         {color &&
@@ -78,7 +90,7 @@ class ConfigPanel extends React.PureComponent {
                 value={c.value}
                 min={this.MIN_RGB}
                 max={this.MAX_RGB}
-                onChange={this.handleColorChange}
+                onChange={this.handleRGBChange}
               />
               <input
                 type="number"
@@ -86,7 +98,7 @@ class ConfigPanel extends React.PureComponent {
                 value={c.value}
                 min={this.MIN_RGB}
                 max={this.MAX_RGB}
-                onChange={this.handleColorChange}
+                onChange={this.handleRGBChange}
               />
             </div>
           ))}
@@ -111,6 +123,27 @@ class ConfigPanel extends React.PureComponent {
             max={this.MAX_RGB}
             onChange={this.handleShadesChange}
           />
+        </div>
+        <div className="config-row history">
+          <span
+            className="clear"
+            title="Clear History"
+            onClick={this.props.onClearHistory}
+          >
+            &#10008;
+          </span>
+          <label htmlFor="history">History</label>
+          {clipboardHistory &&
+            clipboardHistory.map(swatch => (
+              <span
+                key={swatch}
+                title={swatch}
+                className="color-swatch"
+                name={swatch}
+                style={{ background: swatch }}
+                onClick={this.handleColorChange}
+              />
+            ))}
         </div>
       </div>
     );

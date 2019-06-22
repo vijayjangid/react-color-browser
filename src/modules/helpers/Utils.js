@@ -53,4 +53,15 @@ export default class Utils {
       document.body.removeChild(el);
     }
   }
+  static saveToLocalStorage(key, value) {
+    if (localStorage && localStorage.setItem) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+  }
+  static getFromLocalStorage(key, defaultValue) {
+    if (localStorage && localStorage.getItem) {
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : defaultValue;
+    }
+  }
 }

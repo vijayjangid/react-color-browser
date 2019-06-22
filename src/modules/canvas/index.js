@@ -21,12 +21,15 @@ class Canvas extends React.PureComponent {
   onCopy({ target }) {
     const { copySupported, timeout } = this.state;
     const { textContent } = target;
-    if (copySupported && textContent) {
+
+    if (copySupported && textContent && textContent !== "copied!") {
       if (timeout) {
         clearTimeout(timeout);
       }
 
       Utils.copyStringToClipboard(textContent.toUpperCase());
+      this.props.onCopyToClipboard(textContent.toUpperCase());
+
       const _timeout = setTimeout(() => {
         Utils.clearRange();
         this.setState({

@@ -165,7 +165,7 @@ export default class ImagePicker extends React.PureComponent {
           />
           <span className="separator">|</span>
           <img
-            className={gradientType === "swatches" && "active"}
+            className={gradientType === "swatches" ? "active" : ""}
             src={swatches}
             alt="swatches"
             name="swatches"
@@ -173,7 +173,7 @@ export default class ImagePicker extends React.PureComponent {
             onClick={this.onChangeGradientType}
           />
           <img
-            className={gradientType === "linear" && "active"}
+            className={gradientType === "linear" ? "active" : ""}
             src={gradient}
             alt="linear gradient"
             name="linear"
@@ -181,7 +181,7 @@ export default class ImagePicker extends React.PureComponent {
             onClick={this.onChangeGradientType}
           />
           <img
-            className={gradientType === "circular" && "active"}
+            className={gradientType === "circular" ? "active" : ""}
             src={gradientCircle}
             alt="circular gradient"
             name="circular"
