@@ -1,7 +1,6 @@
 .image-picker {
   flex: 2;
   background: #efe9da;
-  min-width: 20vw;
   display: flex;
   justify-content: center;
   align-items: center;

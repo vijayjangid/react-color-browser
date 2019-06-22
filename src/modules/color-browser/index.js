@@ -35,8 +35,10 @@ class ColorBrowser extends React.PureComponent {
     const { color, shades } = this.state;
     return (
       <div className="color-browser">
-        <ImagePicker onChange={this.onChange} />
-        <ConfigPanel color={color} shades={shades} onChange={this.onChange} />
+        <div className="color-container">
+          <ImagePicker onChange={this.onChange} />
+          <ConfigPanel color={color} shades={shades} onChange={this.onChange} />
+        </div>
         {color && <Canvas color={color} shades={shades} />}
       </div>
     );
