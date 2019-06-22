@@ -10,7 +10,7 @@ export default class ImagePicker extends React.PureComponent {
     super(props);
     this.state = {
       enablePicker: false,
-      gradientType: "swatches"
+      gradientType: "linear"
     };
 
     this.canvas = React.createRef();
