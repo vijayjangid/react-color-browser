@@ -14,6 +14,14 @@
 .color-browser:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
+@media only screen and (max-width: 360px) {
+  .color-container {
+    flex-direction: column-reverse;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+}
 @media only screen and (max-width: 768px) {
   .color-browser {
     flex-direction: column-reverse;
