@@ -1,5 +1,12 @@
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background: #e0eef5;
+  background: linear-gradient(to bottom, #a5dfbe 0%, #e1ffd7 47%, #1e7a82 100%);
   color: #111111;
 }
 .App {
