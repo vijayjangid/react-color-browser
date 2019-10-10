@@ -134,9 +134,9 @@ class ConfigPanel extends React.PureComponent {
           </span>
           <label htmlFor="history">History</label>
           {clipboardHistory &&
-            clipboardHistory.map(swatch => (
+            clipboardHistory.map((swatch, index) => (
               <span
-                key={swatch}
+                key={swatch + index}
                 title={swatch}
                 className="color-swatch"
                 name={swatch}
